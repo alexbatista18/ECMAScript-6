@@ -1,0 +1,19 @@
+Anotações Capítulo 12
+Parâmetros Predefinidos em Funções
+Ao definir funções, os parâmetros recebem undefined como padrão. Um hábito comum entre programadores é 
+verificar se algum parâmetro não foi definido. Por exemplo:
+function imprimeNomeCompleto(nome, sobrenome, nomeDoMeio) {
+    if (nomeDoMeio === undefined) {
+        console.log(`${nome} ${sobrenome}`);
+    } else {
+        console.log(`${nome} ${nomeDoMeio} ${sobrenome}`);
+    }
+}
+
+imprimeNomeCompleto('Romulo', 'Scampini'); // Romulo Scampini
+imprimeNomeCompleto('Leticia', 'Aparecida', 'de Souza'); // Leticia Aparecida de Souza
+Com o ES6, não é mais necessário implementar essa lógica, pois é possível atribuir valores pré-definidos 
+para os parâmetros. Por exemplo:
+function imprimeNomeCompleto(nome, sobrenome, nomeDoMeio = "") {
+    console.log(`${nome} ${nomeDoMeio} ${sobrenome}`);
+}

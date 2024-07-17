@@ -1,0 +1,59 @@
+Anotações Capítulo 13
+PARÂMETROS INFINITOS COM OPERADOR REST
+Para casos em que queremos que nossa função trabalhe com um número indefinido de parâmetros, como por exemplo
+na construção de um método que gera uma query para ser executada no banco de dados, podemos aproveitar o 
+objeto arguments. Veja o exemplo:
+A função montaQuerySelect constrói uma consulta SQL:
+function montaQuerySelect() {
+    const tabela = arguments[0];
+    const qtdArgs = arguments.length;
+    let cols = '';
+    if (qtdArgs > 1) {
+        for (let index = 1; index < qtdArgs; index++) {
+            cols += `${arguments[index]}, `;
+        }
+        cols = cols.substring(0, cols.length - 2);
+    } else {
+        cols = '*';
+    }
+    return `SELECT ${cols} FROM ${tabela}`;
+}
+Outra forma de passar referências de um objeto via índice:
+function logarTodosArgumentos() {
+    for (let i = 0; i < arguments.length; i++) {
+        console.log(arguments[i]);
+    }
+}
+logarTodosArgumentos(1, 2, 3); // 1, 2, 3
+Função para somar valores:
+function somar() {
+    let soma = 0;
+    const qtd = arguments.length;
+    for (let i = 0; i < qtd; i++) {
+        soma += arguments[i];
+    }
+    return soma;
+}
+console.log(somar(1, 2)); // 3
+console.log(somar(1, 2, 3)); // 6
+console.log(somar(1, 2, 3, 4)); // 10
+O que temos de novo é o método Rest, que utiliza a sintaxe .... Portanto, no exemplo anterior, ficaria assim:
+function somar(...valores) {
+    let soma = 0;
+    const qtd = valores.length;
+    for (let i = 0; i < qtd; i++) {
+        soma += valores[i];
+    }
+    return soma;
+}
+console.log(somar(1, 2)); // 3
+console.log(somar(1, 2, 3)); // 6
+console.log(somar(1, 2, 3, 4)); // 10
+Neste caso, valores se torna um array, permitindo que utilizemos métodos de array, como reduce:
+function somar(...valores) {
+    return valores.reduce((soma, valor) => {
+        return soma + valor;
+    }, 0);
+}
+LIMITAÇÕES:
+Só podemos utilizar um operador Rest por função.

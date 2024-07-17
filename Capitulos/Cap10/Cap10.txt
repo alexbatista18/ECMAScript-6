@@ -1,0 +1,39 @@
+Anotações Capítulo 10
+ARROW FUNCTIONS
+As arrow functions são uma nova forma de declarar funções introduzida no ECMAScript 6. Antes, tínhamos 
+algumas maneiras tradicionais de definir funções:
+
+Atribuindo uma função a uma variável: var nome_fun = function(parametros) { corpo da função }.
+Usando a declaração de função: function nome_fun(parametros) { corpo da função }.
+Criando uma função com o construtor Function: var funcaoDesligar = new Function('// corpo da função').
+Com as arrow functions, a sintaxe muda para: var nome_fun = (parametros) => { corpo da função }.
+
+Uma das principais vantagens das arrow functions é que elas preservam o valor de this do contexto em que 
+foram definidas. Por exemplo:
+const equipe = {
+    nome: 'Guerreiros Z',
+    membros: ['Goku', 'Kuririn', 'Vegeta'],
+    membrosDaEquipe: function() {
+        this.membros.forEach(membro => {
+            console.log(`${membro} é da equipe ${this.nome}`);
+        });
+    }
+}
+Neste caso, ao chamar equipe.membrosDaEquipe(), a saída será:
+
+Goku é da equipe Guerreiros Z
+Kuririn é da equipe Guerreiros Z
+Vegeta é da equipe Guerreiros Z
+
+No entanto, se tentarmos usar uma função comum dentro do forEach, o comportamento será diferente:
+const equipe = {
+    nome: 'Guerreiros Z',
+    membros: ['Goku', 'Kuririn', 'Vegeta'],
+    membrosDaEquipe: function() {
+        this.membros.forEach(function(membro) {
+            console.log(`${membro} é da equipe ${this.nome}`);
+        });
+    }
+}
+Nesse caso, o código não funcionará corretamente, pois this não se referirá ao objeto equipe. Para resolver 
+isso, precisaríamos usar .bind(this) ao final da função.

@@ -1,0 +1,68 @@
+Anotações Capítulo 15 (obs: sem exemplo em js pois esse cap já foi didático o suficiente.)
+DESESTRUTURAÇÃO DE ARRAYS E OBJETOS
+A desestruturação é uma forma prática de extrair valores de arrays e objetos e atribuí-los a variáveis de 
+forma mais concisa. 
+const	Usuario	=	{
+	nome:	'	Elliot',
+	sobrenome:	'Alderson',
+	senha:	'mrrobot'
+	email:	'elliot.alderson@gmail.com',
+	profissao:	'Engenheiro	de	Cibersegurança'
+	github:	'https://github.com/ElliotAlderson'
+}
+const	{email}	=	Usuario;
+console.log(email);	//	elliot.alderson@gmail.com
+Basta o variavel ter o mesmo nome que a propriedade do objeto.
+
+ROTULANDO	PROPRIEDADES
+A sintaxe básica para a atribuição de propriedades é:
+<propriedade>: <label>
+
+DESESTRUTURAMENTO DE VÁRIOS OBJETOS
+Exemplo de Desestruturação de Objetos
+Considerando o objeto suco:
+const suco = {
+    sabor: 'uva',
+    quantidade: '500ml'
+};
+const doce = {
+    tipo: 'açúcar'
+};
+Podemos usar a desestruturação em uma função para extrair as propriedades:
+function descreveSuco({ sabor, quantidade }, { tipo }) {
+    return `Este suco é de sabor ${sabor} e possui ${quantidade}, adoçado com ${tipo}.`;
+}
+descreveSuco(suco, doce);
+//'Este suco é de sabor uva e possui 500ml adocicado com açucar'
+Também podemos aplicar em arrays e objeto meio que utilizando suas posições:
+const	cores	=	['azul',	'cinza',	'branco',	'preto'];
+const	[cor1,,,cor2]	=	cores;
+console.log(cor1);	//	azul
+console.log(cor2);	//	preto
+
+Uma ideia para usar isso é para adquirar um componente de um ojeto:
+const	contatos = [
+	{
+		nome: 'Alex	Júnior',
+		numero: '1234-5678'
+	},
+	{
+		nome: 'Carolina	Moya',
+		numero:	'1234-6789'
+	},
+	{
+		nome: 'Fernando	Jorge',
+		numero:	'1234-5567'
+	}
+];
+const	[,Carol] = contatos;
+function	mostraNumero({numero}){
+	console.log(numero);
+}
+mostraNumero(Carol);//	1234-6789
+O código funciona, mas podemos ir além:
+function mostraNumeroDaCarol([,{numero}]){
+	console.log(numero);
+}
+
+

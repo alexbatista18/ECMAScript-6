@@ -1,0 +1,45 @@
+
+Anotações Capítulo 4
+Iteradores
+O iterador sabe como acessar um a um os elementos de uma estrutura iterável. Ele possui um método "next" 
+que retorna o próximo item da estrutura iterável, definido por duas propriedades: done e value. O done é 
+um valor booleano que indica se toda a estrutura foi acessada, enquanto o value contém o valor extraído.
+
+Exemplo:
+Se temos uma estrutura com apenas um valor:
+iteravel.next(); // {value: 1, done: false}
+
+Se chamarmos novamente, obtemos done: true, pois não existem mais valores para iterar, indicando que toda 
+a estrutura já foi percorrida.
+
+Iteráveis
+Em JavaScript, alguns tipos já são iteráveis por padrão, como Arrays, Strings, Maps e Sets. Porém, um 
+objeto é definido como iterável se ele define explicitamente o seu comportamento de iteração. Para isso, 
+é necessário que ele implemente o seu iterador na propriedade de chave Symbol.iterator.
+
+Exemplo:
+var bruxos = ['Harry Potter', 'Hermione Granger', 'Rony Weasley'];
+// obtém o iterador
+var iteradorBruxos = bruxosSymbol.iterator;
+iteradorBruxos.next(); // {value: 'Harry Potter', done: false}
+iteradorBruxos.next(); // {value: 'Hermione Granger', done: false}
+iteradorBruxos.next(); // {value: 'Rony Weasley', done: false}
+iteradorBruxos.next(); // {value: undefined, done: true}
+
+Recuperamos o iterador da propriedade Symbol.iterator e usamos o seu método next para passar por toda a 
+lista.
+
+Iteradores e Iteráveis na Prática
+Normalmente, utilizamos o laço for e geradores para iterar iteráveis. Porém, podemos buscar outros métodos:
+
+var iterador = bruxosSymbol.iterator;
+var done = false;
+var proximo = iterador.next();
+do {
+var bruxo = proximo.value;
+chapeuSeletor.fazerSelecaoDaCasa(bruxo);
+proximo = iterador.next();
+} while (!proximo.done);
+
+Neste exemplo, usamos um do...while para iterar sobre a lista de bruxos e fazer a seleção da casa para cada 
+um deles.

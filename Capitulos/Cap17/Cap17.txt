@@ -1,0 +1,16 @@
+Anotações Capítulo 17 (obs: importante olhar arquivo ".js" para bom entendimento.)
+Os módulos servem para dividir o código de um software complexo. Por exemplo, ao desenvolver um site, 
+precisamos realizar o cadastramento do usuário, enviar os dados para o banco de dados e enviar um email 
+de autenticação. Essas tarefas podem ser feitas em partes.
+
+Até o ES5, usava-se métodos convencionais utilizando bibliotecas externas, mas isso mudou no ES6.
+
+Quanto à exportação de módulos, ela pode ser padrão ou nomeada.
+class Perfil {
+    // implementação do Perfil
+}
+export default Perfil;
+Para importar um módulo, podemos usar a sintaxe de importação nomeada:
+import { adicionarPerfil as adicionarJogador } from './Perfil';
+adicionarPerfil(); // ERRO!
+adicionarJogador(); // OK!

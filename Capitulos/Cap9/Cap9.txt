@@ -1,0 +1,18 @@
+Anotações Capítulo 9
+MANIPULAÇÃO DE TEXTOS COM TEMPLATE STRINGS
+Uma string é uma abstração de alto nível de uma cadeia de caracteres. O tratamento de strings pode ser 
+complicado, especialmente quando precisamos concatenar várias strings com variáveis para exibir informações 
+ao usuário. Para facilitar esse processo, o ES6 introduziu o conceito de template strings, que são de dois 
+tipos:
+
+Template strings marcadas (tags)
+Esses templates permitem formular expressões com strings de forma mais prática e eficiente.
+const nome = 'Diego';
+console.log(`Bem-vindo, ${nome}`);
+Assim, podemos injetar valores diretamente na string. Também é possível realizar operações dentro dos 
+colchetes:
+const n1 = 1, n2 = 2;
+console.log(`${n1} + ${n2} = ${n1 + n2}`);
+// Saída: 1 + 2 = 3
+As template strings marcadas permitem criar funções que podem manipular a string e as expressões interpoladas 
+de maneiras mais complexas, oferecendo maior flexibilidade na construção de strings.

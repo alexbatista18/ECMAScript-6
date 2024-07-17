@@ -1,107 +1,128 @@
-##Anotações Capítulo 3
+Anotações Capítulo 3
+Babel
+Babel é uma ferramenta utilizada para "tradução" entre diferentes versões de JavaScript.
 
-#Babel: ferramenta utilizada para fazer "tradução" entre versões de JavaScript
+Métodos auxiliares para array
+forEach
+O método forEach exibe todo o conteúdo de um array, útil para evitar iterações utilizando for.
 
-#Métodos auxiliares para array:
-#forEach: exibe todo o conteúdo de uma array, útil para evitar iterações utilizando for.
-Exemplo: 
-var	nomes	=	['maria',	'josé',	'joão'];
+Exemplo:
+var nomes = ['maria', 'josé', 'joão'];
 nomes.forEach(function(nome) {
-		console.log(nome);
+console.log(nome);
 });
-Tamébem posso fazer assim:
-var	nomes	=	['maria',	'josé',	'joão'];
-function	imprimeNome(nome) {
-		console.log(nome);
+
+Também pode ser feito assim:
+var nomes = ['maria', 'josé', 'joão'];
+function imprimeNome(nome) {
+console.log(nome);
 }
 nomes.forEach(imprimeNome);
-Nesse segundo caso definimos a função primeiro, definindo-a antes de a passarmos como parametro no for Each.
-Mas vale se atentar quando a ácrescimo de componentes no array. O forEach só processa os alementos na instância
-que ela fora chamada, por tanto se dentro da função é acrescentando algum componente, ela não será contemplada
-pelo forEach.
+
+Nesse segundo caso, definimos a função primeiro, antes de passá-la como parâmetro no forEach. Mas vale 
+se atentar quando há acréscimo de componentes no array. O forEach só processa os elementos na instância 
+que ele foi chamado, portanto se dentro da função for acrescentado algum componente, ele não será 
+contemplado pelo forEach.
+
 Exemplo:
-var	canais	=	["Globo",	"Sbt",	"Record"];
+var canais = ["Globo", "Sbt", "Record"];
 canais.forEach(function(canal) {
-		canais.push("RedeTV");	//	este	item	será	ignorado
-		console.log(canal);
-})
-
-#map: itera sobre todo o array, mas além disso permite fazer modificações para salvar em outro array.
-Exemplo:
-var	numeros	=	[1,2,3];
-var	dobro	=	numeros.map(function(numero) {
-		return	numero	*	2;
+canais.push("RedeTV"); // este item será ignorado
+console.log(canal);
 });
-console.log(numeros);	//	[1,2,3]
-console.log(dobro);	//	[2,4,6]
 
+map
+O método map itera sobre todo o array, mas além disso permite fazer modificações e salvar em outro array.
 
-#filter: itera sobre todo o array a procura compoenentes que satisfaça uma condição.
 Exemplo:
-var	alunos	=	[
-		{nome:'joão',	idade:15},
-		{nome:'josé',	idade:18},
-		{nome:'maria',	idade:20}
+var numeros = [1, 2, 3];
+var dobro = numeros.map(function(numero) {
+return numero * 2;
+});
+console.log(numeros); // [1, 2, 3]
+console.log(dobro); // [2, 4, 6]
+
+filter
+O método filter itera sobre todo o array à procura de componentes que satisfaçam uma condição.
+
+Exemplo:
+var alunos = [
+{nome: 'joão', idade: 15},
+{nome: 'josé', idade: 18},
+{nome: 'maria', idade: 20}
 ];
-var	alunosDeMaior	=	alunos.filter(function(aluno) {
-		return	aluno.idade	>=	18; //Irá retorna apenas alunos maiores ou igual a 18 anos.
+var alunosDeMaior = alunos.filter(function(aluno) {
+return aluno.idade >= 18; // Irá retornar apenas alunos maiores ou iguais a 18 anos.
 });
-console.log(alunosDeMaior); //	[{nome:'josé',	idade:18},	{nome:'maria',	idade:20}]
+console.log(alunosDeMaior); // [{nome: 'josé', idade: 18}, {nome: 'maria', idade: 20}]
 
-#find: itera sobre todo o array a procura de APENAS UM compoenente que satisfaça uma condição.
+find
+O método find itera sobre todo o array à procura de APENAS UM componente que satisfaça uma condição.
+
 Exemplo:
-var	alunos	=	[
-		{nome:'joão'},
-		{nome:'josé'},
-		{nome:'maria'}
+var alunos = [
+{nome: 'joão'},
+{nome: 'josé'},
+{nome: 'maria'}
 ];
-var	aluno	=	alunos.find(function(aluno) {
-		return	aluno.nome	===	'josé';
+var aluno = alunos.find(function(aluno) {
+return aluno.nome === 'josé';
 });
-console.log(aluno);	//	{"nome":"josé"}
-Vale lembrar que caso na lista existissem dois alunos com	o nome “josé”, somente o primeiro seria retornado.
+console.log(aluno); // {"nome":"josé"}
 
-#every: itera sobre o array e retorna uma valor booleano para satisfazer uma "pergunta".
+Vale lembrar que caso na lista existissem dois alunos com o nome "josé", somente o primeiro seria retornado.
+
+every
+O método every itera sobre o array e retorna um valor booleano para satisfazer uma "pergunta".
+
 Exemplo:
-var	alunos	=	[
-	{nome:'joão',	idade:	18},
-	{nome:'maria',	idade:	20},
-	{nome:'pedro',	idade:	24}
+var alunos = [
+{nome: 'joão', idade: 18},
+{nome: 'maria', idade: 20},
+{nome: 'pedro', idade: 24}
 ];
-var	todosAlunosDeMaior	=	alunos.every(function(aluno){
-	return	aluno.idade	>=	18;		
+var todosAlunosDeMaior = alunos.every(function(aluno) {
+return aluno.idade >= 18;
 });
-console.log(todosAlunosDeMaior);//	true
-Caso um	dos	elementos não satisfaça	a condição, o resultado do every de imediato será false.
+console.log(todosAlunosDeMaior); // true
 
-#some: itera um array ára validar se, pelo menos, um dos elementos satisfaz uma dada condição.
+Caso um dos elementos não satisfaça a condição, o resultado do every de imediato será false.
+
+some
+O método some itera um array para validar se, pelo menos, um dos elementos satisfaz uma dada condição.
+
 Exemplo:
-var	pesoDasMalas	=	[12,32,21,29];
-var	temMalaAcimaDoPeso	=	pesoDasMalas.some(function(pesoDaMala) {
-		return	pesoDaMala	>	30;
+var pesoDasMalas = [12, 32, 21, 29];
+var temMalaAcimaDoPeso = pesoDasMalas.some(function(pesoDaMala) {
+return pesoDaMala > 30;
 });
-console.log(temMalaAcimaDoPeso);	//	true
+console.log(temMalaAcimaDoPeso); // true
+
 Caso não tivesse nenhum elemento que satisfaça a condição, o valor retornado seria false.
 
-#reduce: percorre o array e tem como objetivo condesar em apenas em um número, parecido com o somatório.
+reduce
+O método reduce percorre o array e tem como objetivo condensar em apenas um número, parecido com o somatório.
+
 Exemplo:
-var	numeros	=	[1,2,3,4,5];
-var	soma	=	0;
-soma	=	numeros.reduce(function(soma,numero){
-		return	soma	+	numero;
-},	0)
-console.log(soma);	//	15
-Neste método temos 2 parâmetros, function(soma,numero){...}: função	de iteração com
-dois parâmetros e "0" que é o valor inicial da soma.
+var numeros = [1, 2, 3, 4, 5];
+var soma = numeros.reduce(function(soma, numero) {
+return soma + numero;
+}, 0);
+console.log(soma); // 15
+
+Neste método temos 2 parâmetros: function(soma, numero){...}, que é a função de iteração com dois 
+parâmetros, e 0, que é o valor inicial da soma.
+
 Outra utilização:
-var	alunos	=	[
-		{nome:'joão',	idade:	10},
-		{nome:'josé',	idade:	20},
-		{nome:'marcos',	idade:	30}
+var alunos = [
+{nome: 'joão', idade: 10},
+{nome: 'josé', idade: 20},
+{nome: 'marcos', idade: 30}
 ];
-var	nomes	=	alunos.reduce(function(arrayNomes,	aluno) {
-		arrayNomes.push(aluno.nome);
-		return	arrayNomes;
-},	[]);
-console.log(nomes);	//	['joão',	'josé',	'marcos']
-Para cada iteração adicionamos os nomes em um array vazio [].
+var nomes = alunos.reduce(function(arrayNomes, aluno) {
+arrayNomes.push(aluno.nome);
+return arrayNomes;
+}, []);
+console.log(nomes); // ['joão', 'josé', 'marcos']
+
+Para cada iteração, adicionamos os nomes em um array vazio [].

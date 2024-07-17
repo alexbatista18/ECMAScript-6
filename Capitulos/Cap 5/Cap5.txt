@@ -1,0 +1,60 @@
+Anotações Capítulo 5
+Iteração com o laço for…of
+Aprendendo como funciona o laço de repetição for..of pra fazer iteração em objetos. Normalmente itera em
+array, set ou map.
+Utilização do laço:
+var	numeros	=	[1,2,3,4,5];
+for(var	numero	of	numeros)	{
+		console.log(numero);
+}
+O que acontece por de baixo dos panos é que o laço for…of ele acessa o iterador da estrutura a cada passo
+de iteração. Por tanto se tentarmos iterar um objeto que não é iteravel dá erro:
+var	perfilDoFacebook	=	{
+		nome:	'Carlos',
+		idade:	22
+		//	...	outras	propriedades
+}
+for(var	dado	of	perfilDoFacebook){
+		console.log(dado);
+}
+//	TypeError:	perfilDoFacebook[Symbol.iterator]	is	not	a	function
+Neste caso o ideal é utilizar o laço for…in.
+DIFERENÇA ENTRE O FOR..OF E FOR…IN
+A principal diferença é o for…in ele percorre os nomes dos atributos de um objeto, enquanto o for…of 
+perccorre os calores dos atributos. Exemplo:
+var	perfilDoFacebook	=	{
+		nome:	'Carlos',
+		idade:	22
+		//	...
+}
+for(var	propriedade	in	perfilDoFacebook){
+		var	info	=	perfilDoFacebook[propriedade];
+		console.log(info);
+}
+O print: “Carlos
+22”.
+#BREAK E CONTINUE
+Break funciona dentro dos laços de repetição também, se queremos interromper um código assim que uma 
+condiçao for satisfeita, podemos usar break:
+var	numeros	=	[1,2,3,4,5];
+for(var	numero	of	numeros)	{
+		if(numero	>	3)	{
+				break;
+		}
+		console.log(numero);
+}
+//	1	2	3
+Já o continue é utilizado para indicar que o código deve continuar para o próximo item, utilizando para 
+excessões em laçoes, por exemplo:
+var	numeros	=	[1,2,3,4,5];
+for(var	numero	of	numeros)	{
+		if(numero	===	2)	{
+				continue;
+		}
+		console.log(numero);
+}
+//	1	3	4	5
+#Aplicação:
+for(var	bruxo	of	bruxos)	{
+		chapeuSeletor.fazerSelecaoDaCasa(bruxo);
+}

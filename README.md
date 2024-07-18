@@ -27,6 +27,7 @@ Está segmentado por capítulos, a cada capítulo haverá um arquivo .txt para a
 [Cap 14: Expansão com o operador Spread](Capitulos/Cap14)
 
 [Cap 15: Desestruturamento de Arrays e Objetos](Capitulos/Cap15)
+
 [Cap 16: Modelando com classes](Capitulos/Cap16)
 
 [Cap 17: Módulos](Capitulos/Cap17)
